@@ -306,6 +306,11 @@ jobs:
         CMAKE_BUILD_TYPE: "RelWithDebInfo"
       run: |
         cmake --build "build/ci" --config RelWithDebInfo --target StreamFX
+    - name: "Packaging"
+      shell: bash
+      run: |
+        mkdir "${{ github.workspace }}/build/package"
+        cmake --build "${{ github.workspace }}/build/ci" --config RelWithDebInfo --target PACKAGE_7Z
     - name: 'Packaging: Install Packages'
       if: startsWith( matrix.runner, 'macos' )
       shell: bash
